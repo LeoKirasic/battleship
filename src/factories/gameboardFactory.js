@@ -11,12 +11,22 @@ const gameboardFactory = () => {
 
   const receiveAttack = (coordinates) => {
     for (let i = 0; i < shipArray.length; i++) {
-      if (shipArray[i].coordinates !== coordinates) {
-        missedCoordinates.push(coordinates);
-      } else {
+      if (
+        shipArray[i].getCoordinates()[0] === coordinates[0] &&
+        shipArray[i].getCoordinates()[1] === coordinates[1]
+      ) {
         shipArray[i].hit();
+      } else {
+        missedCoordinates.push(coordinates);
       }
     }
   };
-  return { placeShip, shipArray, receiveAttack };
+  return {
+    placeShip,
+    shipArray,
+    receiveAttack,
+    missedCoordinates,
+  };
 };
+
+export { gameboardFactory };

@@ -38,3 +38,21 @@ test('ship attack missed coords get added to missedCoordinates array', () => {
   const array = [[1, 2]];
   expect(gameboard.missedCoordinates).toEqual(array);
 });
+
+test('areAllShipsSunk correct ', () => {
+  const gameboard = gameboardFactory();
+  gameboard.placeShip(1, [1, 1]);
+
+  gameboard.receiveAttack([1, 1]);
+
+  expect(gameboard.areAllShipsSunk()).toBe(true);
+});
+
+test('areAllShipsSunk does not only return true', () => {
+  const gameboard = gameboardFactory();
+  gameboard.placeShip(3, [1, 1]);
+
+  gameboard.receiveAttack([3, 3]);
+
+  expect(gameboard.areAllShipsSunk()).toBe(false);
+});

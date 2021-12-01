@@ -21,11 +21,19 @@ const gameboardFactory = () => {
       }
     }
   };
+  const areAllShipsSunk = () => {
+    const sunk = (ship) => ship.isSunk() !== true;
+    if (shipArray.every(sunk)) {
+      return false;
+    }
+    return true;
+  };
   return {
     placeShip,
     shipArray,
     receiveAttack,
     missedCoordinates,
+    areAllShipsSunk,
   };
 };
 

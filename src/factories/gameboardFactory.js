@@ -4,6 +4,20 @@ const gameboardFactory = () => {
   const shipArray = [];
   const missedCoordinates = [];
 
+  const createBoard = (rows, cols, defaultValue) => {
+    const arr = [];
+
+    for (let i = 0; i < rows; i++) {
+      arr.push([]);
+      arr[i].push(new Array(cols));
+      for (let j = 0; j < cols; j++) {
+        arr[i][j] = defaultValue;
+      }
+    }
+
+    return arr;
+  };
+
   const placeShip = (length, coordinates) => {
     const ship = shipFactory(length, coordinates);
     shipArray.push(ship);

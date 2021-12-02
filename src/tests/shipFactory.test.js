@@ -33,7 +33,7 @@ test('isSunk positive test', () => {
   ship.hit(1);
   ship.hit(2);
 
-  expect(ship.isSunk(3)).toBe(true);
+  expect(ship.isSunk()).toBe(true);
 });
 
 test('isSunk negative test', () => {
@@ -42,5 +42,32 @@ test('isSunk negative test', () => {
   ship.hit(1);
   ship.hit(2);
 
-  expect(ship.isSunk(4)).toBe(false);
+  expect(ship.isSunk()).toBe(false);
+});
+
+test('Ship coordinates are placed properly', () => {
+  const ship = shipFactory(3);
+
+  const expectedArray = [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+  ];
+  ship.place(3, [0, 0]);
+  expect(ship.longCoords).toEqual(expectedArray);
+});
+
+test('ship coordinates placed properly with long ship', () => {
+  const ship = shipFactory(5);
+
+  const expectedArray = [
+    [5, 5],
+    [5, 6],
+    [5, 7],
+    [5, 8],
+    [5, 9],
+  ];
+  ship.place(5, [5, 5]);
+
+  expect(ship.longCoords).toEqual(expectedArray);
 });

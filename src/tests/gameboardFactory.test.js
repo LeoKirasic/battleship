@@ -56,3 +56,10 @@ test('areAllShipsSunk does not only return true', () => {
 
   expect(gameboard.areAllShipsSunk()).toBe(false);
 });
+
+test('placeship basic test', () => {
+  const gameboard = gameboardFactory();
+  gameboard.placeShip(5, [4, 3]);
+
+  expect(gameboard.board[4][3]).toBe('X');
+});

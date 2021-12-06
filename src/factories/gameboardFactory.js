@@ -17,9 +17,17 @@ const gameboardFactory = () => {
 
     return arr;
   };
+  const board = createBoard(10, 10, '');
 
+  const addShipToBoard = (ship) => {
+    for (let i = 0; i < ship.longCoords.length; i++) {
+      board[ship.longCoords[0][0]].splice(ship.longCoords[i][1], 1, 'X');
+    }
+  };
   const placeShip = (length, coordinates) => {
     const ship = shipFactory(length, coordinates);
+    ship.place(length, coordinates);
+    addShipToBoard(ship);
     shipArray.push(ship);
   };
 
@@ -48,6 +56,7 @@ const gameboardFactory = () => {
     receiveAttack,
     missedCoordinates,
     areAllShipsSunk,
+    board,
   };
 };
 

@@ -31,15 +31,34 @@ const gameboardFactory = () => {
     shipArray.push(ship);
   };
 
+  // const addToMissedCoordinates = (coordinates) => {
+  //   if (missedCoordinates.length === 0) {
+  //     missedCoordinates.push(coordinates);
+  //   } else {
+  //     for (let i = 0; i < missedCoordinates.length; i++) {
+  //       if (
+  //         JSON.stringify(missedCoordinates[i]) === JSON.stringify(coordinates)
+  //       ) {
+  //         break;
+  //       } else {
+  //         missedCoordinates.push(coordinates);
+  //       }
+  //     }
+  //   }
+  // };
+
   const receiveAttack = (coordinates) => {
     for (let i = 0; i < shipArray.length; i++) {
-      if (
-        shipArray[i].getCoordinates()[0] === coordinates[0] &&
-        shipArray[i].getCoordinates()[1] === coordinates[1]
-      ) {
-        shipArray[i].hit();
-      } else {
-        missedCoordinates.push(coordinates);
+      for (let j = 0; j < shipArray[i].longCoords.length; j++) {
+        if (
+          JSON.stringify(shipArray[i].longCoords[j]) ===
+          JSON.stringify(coordinates)
+        ) {
+          shipArray[i].hit();
+          break;
+        } else {
+          console.log('Miss!');
+        }
       }
     }
   };
